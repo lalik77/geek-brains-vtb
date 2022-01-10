@@ -7,10 +7,12 @@ import lecture2.homework.service.Runnable;
 
 public class Human implements Runnable, Jumpable {
 
+  private int id;
   private int limitRun;
   private int limitJump;
 
-  public Human(int limitRun, int limitJump) {
+  public Human(int id, int limitRun, int limitJump) {
+    this.id = id;
     this.limitRun = limitRun;
     this.limitJump = limitJump;
   }
@@ -19,10 +21,10 @@ public class Human implements Runnable, Jumpable {
   public boolean jump(Wall wall) {
 
     if (this.limitJump < wall.getHeight()) {
-      System.out.println("This human cannot jump over " + this.limitJump + " meter(s)");
+      System.out.println("[JUMP]========> This human with id: " + getId() + " cannot jump over " + this.limitJump + " meter(s)");
       return false;
     }
-    System.out.println("Human has jumped with success!");
+    System.out.println("Human with id : " + getId() + " has jumped with success!");
     return true;
   }
 
@@ -30,10 +32,14 @@ public class Human implements Runnable, Jumpable {
   public boolean run(Treadmill treadmill) {
 
     if (this.limitRun < treadmill.getLength()) {
-      System.out.println("This human cannot run over " + this.limitRun + " meter(s)");
+      System.out.println("[RUN]========> This human with id: " + getId() + " cannot run over " + this.limitRun + " meter(s)");
       return false;
     }
-    System.out.println("Human ran with success!");
+    System.out.println("Human with id : " + getId() + " ran with success!");
     return true;
+  }
+
+  public int getId() {
+    return id;
   }
 }

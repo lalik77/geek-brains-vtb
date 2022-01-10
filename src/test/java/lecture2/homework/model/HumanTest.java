@@ -12,7 +12,7 @@ class HumanTest {
   public void humanJumpTest_withSuccess() {
 
     Wall wall =new Wall(10);
-    Human human = new Human(32,34);
+    Human human = new Human(1,32,34);
 
     boolean isSuccess = human.jump(wall);
 
@@ -23,7 +23,7 @@ class HumanTest {
   public void humanJumpTest_withoutSuccess() {
 
     Wall wall=new Wall(10);
-    Human human = new Human(9,9);
+    Human human = new Human(2,9,9);
 
     boolean isSuccess = human.jump(wall);
 
@@ -34,7 +34,7 @@ class HumanTest {
   public void humanRunTest_withSuccess() {
 
     Treadmill treadmill = new Treadmill(12);
-    Human human = new Human(32,34);
+    Human human = new Human(3,32,34);
 
     boolean isSuccess = human.run(treadmill);
 
@@ -45,7 +45,7 @@ class HumanTest {
   public void humanRunTest_withoutSuccess() {
 
     Treadmill treadmill = new Treadmill(12);
-    Human human = new Human(6,34);
+    Human human = new Human(4,6,34);
 
     boolean isSuccess = human.run(treadmill);
 
