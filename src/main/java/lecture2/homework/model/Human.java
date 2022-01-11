@@ -18,17 +18,6 @@ public class Human implements Runnable, Jumpable {
   }
 
   @Override
-  public boolean jump(Wall wall) {
-
-    if (this.limitJump < wall.getHeight()) {
-      System.out.println("[JUMP]========> This human with id: " + getId() + " cannot jump over " + this.limitJump + " meter(s)");
-      return false;
-    }
-    System.out.println("Human with id : " + getId() + " has jumped with success!");
-    return true;
-  }
-
-  @Override
   public boolean run(Treadmill treadmill) {
 
     if (this.limitRun < treadmill.getLength()) {
@@ -36,6 +25,17 @@ public class Human implements Runnable, Jumpable {
       return false;
     }
     System.out.println("Human with id : " + getId() + " ran with success!");
+    return true;
+  }
+
+  @Override
+  public boolean jump(Wall wall) {
+
+    if (this.limitJump < wall.getHeight()) {
+      System.out.println("[JUMP]========> This human with id: " + getId() + " cannot jump over " + this.limitJump + " meter(s)");
+      return false;
+    }
+    System.out.println("Human with id : " + getId() + " has jumped with success!");
     return true;
   }
 
