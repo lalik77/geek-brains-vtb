@@ -1,7 +1,6 @@
 
 
-# Введение в ООП
-## 3 - Исключения
+# 4 - Обощения, Коллекции.
 
 
-![IMG](https://github.com/lalik77/geek-brains-vtb/blob/2-lecture/img/HW-2.jpg)
+![IMG](https://github.com/lalik77/geek-brains-vtb/blob/2-lecture/img/HW-4.jpg)
