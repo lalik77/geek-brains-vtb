@@ -2,10 +2,14 @@
 
 ![Shapka](https://github.com/lalik77/geek-brains-vtb/blob/master/img/shapka.jpg)
 
-1. ООП. Базовый уровень.
-2. ООП. Продвинутый уровень.
-3. Исключения.
-4. Обощения, Коллекции.
+[1. ООП. Базовый уровень.](https://github.com/lalik77/geek-brains-vtb/tree/1-lecture)
+
+[2. ООП. Продвинутый уровень.](https://github.com/lalik77/geek-brains-vtb/tree/2-lecture)
+
+[3. Исключения.](https://github.com/lalik77/geek-brains-vtb/tree/3-lecture)
+
+[4. Обощения, Коллекции.](https://github.com/lalik77/geek-brains-vtb/tree/4-lecture)
+
 5. Коллекции. Часть 2.
 6. Многопоточность. Часть 1.
 7. Многопоточность Часть 2.
