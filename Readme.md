@@ -10,8 +10,10 @@
 
 [4. Обощения, Коллекции.](https://github.com/lalik77/geek-brains-vtb/tree/4-lecture)
 
-5. Коллекции. Часть 2.
-6. Многопоточность. Часть 1.
+[5. Коллекции. Часть 2.](https://github.com/lalik77/geek-brains-vtb/tree/5-lecture)
+
+[6. Многопоточность. Часть 1.](https://github.com/lalik77/geek-brains-vtb/tree/6-lecture)
+
 7. Многопоточность Часть 2.
 8. Stream API.
 9. Reflection API. JDBC. Основы PostgreSQL.
