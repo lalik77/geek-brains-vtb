@@ -4,13 +4,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class MyArrayTest {
+class MyArrayCorrectionTest {
 
   @Test
   public void swapMyArrayAsStringSuccessTest() {
 
     String[] stringArray = {"asd","fgh", "jkl"};
-    MyArray myArray=new MyArray(stringArray);
+    MyArrayCorrection myArray=new MyArrayCorrection(stringArray);
 
     final boolean isSwapped = myArray.swap(0, 2);
 
@@ -23,7 +23,7 @@ class MyArrayTest {
   public void swapMyArrayAsIntegerSuccessTest() {
 
     Integer[] intArray = {1,34,56,78,90,34,56};
-    MyArray myArray=new MyArray(intArray);
+    MyArrayCorrection myArray=new MyArrayCorrection(intArray);
 
     final boolean isSwapped = myArray.swap(4, 0);
 
@@ -37,7 +37,7 @@ class MyArrayTest {
   public void swapMyArrayAsObjectFails_whenPassedFalseParamTest() {
 
     Object[] objArray = new Object[5];
-    MyArray myArray=new MyArray(objArray);
+    MyArrayCorrection myArray=new MyArrayCorrection(objArray);
 
     final boolean isSwapped = myArray.swap(5, 0);
 

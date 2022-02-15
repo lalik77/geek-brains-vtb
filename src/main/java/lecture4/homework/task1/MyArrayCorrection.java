@@ -1,12 +1,10 @@
 package lecture4.homework.task1;
 
-import java.util.Arrays;
+public class MyArrayCorrection {
 
-public class MyArray<T>{
+  Object [] elements ;
 
-  T[] elements ; // Не имеет смысла для женериков. Смотреть Correction
-
-  public MyArray(T[] elements) {
+  public MyArrayCorrection(Object[] elements) {
     this.elements = elements;
   }
 
@@ -20,14 +18,10 @@ public class MyArray<T>{
           "\nMax size of indexes is " + max);*/
     }
 
-    final T element = elements[idx1];
+    final Object element = elements[idx1];
     elements[idx1] = elements[idx2];
     elements[idx2] = element;
     return true;
   }
 
-  @Override
-  public String toString() {
-    return  Arrays.toString(elements) ;
-  }
 }
