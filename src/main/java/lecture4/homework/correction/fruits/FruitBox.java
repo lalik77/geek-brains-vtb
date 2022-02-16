@@ -14,6 +14,7 @@ public class FruitBox<T extends Fruit> {
   public FruitBox(T... fruits) {
     this.container = new ArrayList<>(Arrays.asList(fruits));
   }
+
   public void add(T fruit) {
     this.container.add(fruit);
   }
@@ -43,5 +44,16 @@ public class FruitBox<T extends Fruit> {
     }
     another.container.addAll(this.container);
     this.container.clear();
+  }
+
+  public int getSize() {
+    return container.size();
+  }
+
+  @Override
+  public String toString() {
+    return "FruitBox{" +
+        "container=" + container +
+        '}';
   }
 }

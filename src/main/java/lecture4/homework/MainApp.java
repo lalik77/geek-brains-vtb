@@ -9,8 +9,8 @@ public class MainApp {
 
   public static void main(String[] args) {
 
-    FruitBox<Apple> appleBox = new FruitBox<>(new Apple());
-    FruitBox<Orange> orangeBox = new FruitBox<>(new Orange());
+    FruitBox<Apple> appleBox = new FruitBox<>(new Apple(1));
+    FruitBox<Orange> orangeBox = new FruitBox<>(new Orange(1));
     FruitBox<Fruit> fruitBox  = new FruitBox<>();
 
     appleBox.transfer(fruitBox);
