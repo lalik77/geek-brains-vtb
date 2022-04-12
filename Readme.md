@@ -14,7 +14,9 @@
 
 [6. Многопоточность. Часть 1.](https://github.com/lalik77/geek-brains-vtb/tree/6-lecture)
 
-7. Многопоточность Часть 2.
+[7. Многопоточность. Часть 2.](https://github.com/lalik77/geek-brains-vtb/tree/7-lecture)
+
+
 8. Stream API.
 9. Reflection API. JDBC. Основы PostgreSQL.
 10. Работа с PostgreSQL.
