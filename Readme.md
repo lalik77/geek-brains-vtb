@@ -1,35 +1,77 @@
 
 
-![Shapka](https://github.com/lalik77/geek-brains-vtb/blob/master/img/shapka.jpg)
+# 9 - Reflection API. JDBC.Основы PostgreSQL
 
-[1. ООП. Базовый уровень.](https://github.com/lalik77/geek-brains-vtb/tree/1-lecture)
+Вторая часть урока, готовим окружение.  
+В pom.xml добавляем зависимость как в уроке 
 
-[2. ООП. Продвинутый уровень.](https://github.com/lalik77/geek-brains-vtb/tree/2-lecture)
+![](img/pom-sqlite-jdbc.png)
 
-[3. Исключения.](https://github.com/lalik77/geek-brains-vtb/tree/3-lecture)
+Создаем папку db
 
-[4. Обощения, Коллекции.](https://github.com/lalik77/geek-brains-vtb/tree/4-lecture)
+![](img/folder-db.png)
 
-[5. Коллекции. Часть 2.](https://github.com/lalik77/geek-brains-vtb/tree/5-lecture)
+В IDEA ultimate edition создаем datasource SQLite
 
-[6. Многопоточность. Часть 1.](https://github.com/lalik77/geek-brains-vtb/tree/6-lecture)
+![](img/sqlite.png)
 
-[7. Многопоточность. Часть 2.](https://github.com/lalik77/geek-brains-vtb/tree/7-lecture)
+![](img/main-db-1.png)
+Проверяем в IDEA connection
+![](img/main-db-2-idea-connected.png)
 
-[8. Stream API.](https://github.com/lalik77/geek-brains-vtb/tree/8-lecture)
+Пишем методы `connect()` и `dicconnect()` 
 
-9. Reflection API. JDBC. Основы PostgreSQL.
-10. Работа с PostgreSQL.
-11. Hibernate. Часть 1.
-12. Hibernate. Часть 2.
-13. Spring Core.
-14. Spring Boot. Spring Security.
-15. Spring Data.
-16. Spring AOP. 
-17. Spring Cloud (Netflix).
-18. OAuth-авторизация и jwt.
-19. RabbitMQ.
-20. Doker.
+```java
+public class MainApp {
 
+  private static Connection connection;
+  private static Statement statement;
 
-1 - Лекция 1 - > соответсвует ветке [1-lecture](https://github.com/lalik77/geek-brains-vtb/tree/1-lecture)
+  public static void connect() throws SQLException {
+    try {
+      Class.forName("org.sqlite.JDBC");
+      connection = DriverManager.getConnection("jdbc:sqlite:db/main.db");
+      statement = connection.createStatement();
+    } catch (ClassNotFoundException | SQLException e) {
+      throw new SQLException("Unable to connect");
+    }
+  }
+
+  public static void disconnect() {
+    try {
+      statement.close();
+    } catch (SQLException throwables) {
+      throwables.printStackTrace();
+    }
+    try {
+      connection.close();
+    } catch (SQLException throwables) {
+      throwables.printStackTrace();
+    }
+  }
+
+  public static void main(String[] args) {
+
+    try {
+      connect();
+
+;
+    } catch (SQLException throwables) {
+      throwables.printStackTrace();
+    } finally {
+      disconnect();
+    }
+
+  }
+}
+```
+На этом этапе все подключается и в блоке finally все отключается. 
+
+Создаем таблицу 
+
+![](img/create-students-sql.png)
+
+Таблица создана без данных.
+
+![](img/main-db-3-idea-connected-.png)
+
