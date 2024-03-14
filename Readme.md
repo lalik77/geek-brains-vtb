@@ -116,3 +116,47 @@ INSERT INTO orders (customer_id, item_id) VALUES (3,2);
 
 ![customer.png](img%2Fcustomer.png)
 ![items.png](img%2Fitems.png)
+
+На этом коммите(finish until removePerson, have to add cascade.) в текущей ветке 
+у нас сделано ДЗ до `/removePerson` и работает неправильно.
+
+![hibernate-exception-1.png](img%2Fhibernate-exception-1.png)
+Надо поиграть с каскадированием
+Заглянем на диаграмму и на таблицу `orders` 
+![uml-2.png](img%2Fuml-2.png)
+
+![describe-orders.png](img%2Fdescribe-orders.png)
+
+```sql
+-- First, drop the existing foreign key constraint
+ALTER TABLE orders
+DROP CONSTRAINT orders_customer_id_fkey;
+
+-- Recreate the foreign key constraint with ON DELETE SET NULL option
+ALTER TABLE orders
+ADD CONSTRAINT orders_customer_id_fkey
+FOREIGN KEY (customer_id)
+REFERENCES customers(id)
+ON DELETE SET NULL;
+```
+
+```sql
+-- First, drop the existing foreign key constraint
+ALTER TABLE orders
+    DROP CONSTRAINT orders_item_id_fkey;
+
+-- Recreate the foreign key constraint with ON DELETE SET NULL option
+ALTER TABLE orders
+    ADD CONSTRAINT orders_item_id_fkey
+        FOREIGN KEY (item_id)
+            REFERENCES items(id)
+            ON DELETE SET NULL;
+```
+
+Перепишем скрипт `create-table-orders.sql` в файл `create-table-orders-v2.sql`
+
+- На коммите(implement /removePerson, /removeProduct) в текущей ветке, имплементирован механизм где мы имеем консольное приложение, которые принимает
+на вход команды `/showProductsByPerson`, `/findPersonsByProductTitle`, `/removePerson` и `/removeProduct`.
+
+[![Presentation 1](img/thumb-1.png)](https://youtu.be/aEoC_QchBME "Presentation 1")
+

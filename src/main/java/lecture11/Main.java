@@ -9,6 +9,8 @@ import org.hibernate.SessionFactory;
 import java.util.List;
 import java.util.Scanner;
 import java.util.StringJoiner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
 
@@ -23,12 +25,17 @@ public class Main {
 
                 System.out.println("Введите команду: ");
                 String command = scanner.nextLine();
+                String[] parts = command.trim().split("\\s+");
+                Pattern pattern;
+                Matcher matcher;
 
-                switch (command.split(" ")[0]) {
+                switch (parts[0]) {
 
                     case "/showProductsByPerson":
-                        if (command.split(" ").length == 2) {
-                            String customerName = command.split(" ")[1];
+                        pattern = Pattern.compile("^\\/showProductsByPerson\\s+(\\S.*)$");
+                        matcher = pattern.matcher(command);
+                        if (matcher.matches()) {
+                            String customerName = matcher.group(1);
                             showItemsByCustomer(customerName, sessionFactory);
                         } else {
                             System.out.println("Неверный формат команды");
@@ -36,8 +43,10 @@ public class Main {
                         break;
 
                     case "/findPersonsByProductTitle":
-                        if (command.split(" ").length == 2) {
-                            String itemName = command.split(" ")[1];
+                        pattern = Pattern.compile("^\\/findPersonsByProductTitle\\s+(\\S.*)$");
+                        matcher = pattern.matcher(command);
+                        if (matcher.matches()) {
+                            String itemName = matcher.group(1);
                             showCustomersByItem(itemName, sessionFactory);
                         } else {
                             System.out.println("Неверный формат команды");
@@ -45,10 +54,25 @@ public class Main {
                         break;
 
                     case "/removePerson":
-                        if (command.split(" ").length == 2) {
-                            String customerName = command.split(" ")[1];
+                        pattern = Pattern.compile("^\\/removePerson\\s+(\\S.*)$");
+                        matcher = pattern.matcher(command);
+
+                        if (matcher.matches()) {
+                            String customerName = matcher.group(1);
                             removeCustomer(customerName, sessionFactory);
                         } else {
+                            System.out.println("Неверный формат команды");
+                        }
+                        break;
+
+                    case "/removeProduct":
+                        pattern = Pattern.compile("^\\/removeProduct\\s+(\\S.*)$");
+                        matcher = pattern.matcher(command);
+                        if (matcher.matches()) {
+                            String itemName = matcher.group(1);
+                            removeItem(itemName, sessionFactory);
+                        } else {
+                            System.out.println(parts[0] + " " + parts[1]);
                             System.out.println("Неверный формат команды");
                         }
                         break;
@@ -64,13 +88,35 @@ public class Main {
         }
     }
 
+    private static void removeItem(String itemName, SessionFactory sessionFactory) {
+
+        Session currentSession = sessionFactory.getCurrentSession();
+
+        currentSession.beginTransaction();
+        Item item = getItemByName(itemName, currentSession);
+        System.out.println(item);
+
+        if (item != null) {
+            currentSession.remove(item);
+        } else {
+            System.out.println("Товар с названием " + itemName + " не найден.");
+
+        }
+        currentSession.getTransaction().commit();
+    }
+
     private static void removeCustomer(String customerName, SessionFactory sessionFactory) {
 
         Session currentSession = sessionFactory.getCurrentSession();
 
         currentSession.beginTransaction();
         Customer customer = getCustomerByName(customerName, currentSession);
-        currentSession.remove(customer);
+
+        if (customer != null) {
+            currentSession.remove(customer);
+        } else {
+            System.out.println("Клиент с именем " + customerName + "  не найден.");
+        }
         currentSession.getTransaction().commit();
     }
 
@@ -106,7 +152,7 @@ public class Main {
             customers.forEach(customer -> joiner.add(customer.getName()));
             System.out.println("Клиенты, заказавшие товар " + itemName + ", это:" + joiner.toString());
         } else {
-            System.out.println("Товары с названием " + itemName + " не найдены.");
+            System.out.println("Товар с названием " + itemName + " не найден.");
         }
         currentSession.getTransaction().commit();
 
