@@ -2,6 +2,7 @@ package lecture11.model;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "customers")
@@ -21,15 +22,10 @@ public class Customer {
             joinColumns = @JoinColumn(name="customer_id"),
             inverseJoinColumns = @JoinColumn(name = "item_id")
     )
-    private List<Item> items;
+    private Set<Item> items;
 
 
     public Customer() {
-    }
-
-    public Customer(String name, List<Item> items) {
-        this.name = name;
-        this.items = items;
     }
 
     public Integer getId() {
@@ -48,11 +44,11 @@ public class Customer {
         this.name = name;
     }
 
-    public List<Item> getItems() {
+    public Set<Item> getItems() {
         return items;
     }
 
-    public void setItems(List<Item> items) {
+    public void setItems(Set<Item> items) {
         this.items = items;
     }
 

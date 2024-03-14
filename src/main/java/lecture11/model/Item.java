@@ -3,6 +3,7 @@ package lecture11.model;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "items")
@@ -20,15 +21,9 @@ public class Item {
     private BigDecimal price;
 
     @ManyToMany(mappedBy = "items")
-    private List<Customer> customers;
+    private Set<Customer> customers;
 
     public Item() {
-    }
-
-    public Item(String name, BigDecimal price, List<Customer> customers) {
-        this.name = name;
-        this.price = price;
-        this.customers = customers;
     }
 
     public Integer getItem_id() {
@@ -55,11 +50,11 @@ public class Item {
         this.price = price;
     }
 
-    public List<Customer> getCustomers() {
+    public Set<Customer> getCustomers() {
         return customers;
     }
 
-    public void setCustomers(List<Customer> customers) {
+    public void setCustomers(Set<Customer> customers) {
         this.customers = customers;
     }
 

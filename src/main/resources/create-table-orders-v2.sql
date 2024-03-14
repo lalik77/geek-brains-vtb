@@ -1,6 +1,4 @@
 
-DROP TABLE orders;
-
 CREATE TABLE orders
 (
     order_id          INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,

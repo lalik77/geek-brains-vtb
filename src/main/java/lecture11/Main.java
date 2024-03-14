@@ -2,13 +2,12 @@ package lecture11;
 
 import lecture11.model.Customer;
 import lecture11.model.Item;
+import lecture11.model.Purchase;
 import lecture11.utils.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import java.util.List;
-import java.util.Scanner;
-import java.util.StringJoiner;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -115,7 +114,7 @@ public class Main {
         Customer customer = getCustomerByName(customerName, currentSession);
 
         if (customer != null) {
-            List<Item> items = customer.getItems();
+            Set<Item> items = customer.getItems();
             StringJoiner joiner = new StringJoiner(", ");
             items.forEach(item -> joiner.add(item.getName()));
             System.out.println("Товары для клиента " + customerName + " следующие:  " + joiner.toString());
@@ -134,7 +133,7 @@ public class Main {
         Item item = getItemByName(itemName, currentSession);
 
         if (item != null) {
-            List<Customer> customers = item.getCustomers();
+            Set<Customer> customers = item.getCustomers();
             StringJoiner joiner = new StringJoiner(", ");
             customers.forEach(customer -> joiner.add(customer.getName()));
             System.out.println("Клиенты, заказавшие товар " + itemName + ", это:" + joiner.toString());
@@ -183,6 +182,16 @@ public class Main {
         Customer customerByName = getCustomerByName(customerName, currentSession);
         Item itemByName = getItemByName(itemName, currentSession);
         if (customerByName != null && itemByName != null) {
+            Purchase purchase = new Purchase();
+            purchase.setCustomer(customerByName);
+            purchase.setItem(itemByName);
+            purchase.setPurchasePrice(purchase.getPurchasePrice());
+            purchase.setPurchaseDate(new Date());
+
+            // Сохранить запись о покупке в базе данных
+            currentSession.save(purchase);
+
+            // Добавить товар клиенту
             customerByName.getItems().add(itemByName);
         } else {
             if (customerByName == null) {
