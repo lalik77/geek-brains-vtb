@@ -22,7 +22,10 @@
 
 [10. Работа с PostgreSQL.](https://github.com/lalik77/geek-brains-vtb/tree/10-lecture)
 
-11. Hibernate. Часть 1.
+[10. Работа с PostgreSQL.](https://github.com/lalik77/geek-brains-vtb/tree/10-lecture)
+
+[11. Hibernate. Часть 1.](https://github.com/lalik77/geek-brains-vtb/tree/11-lecture)
+
 12. Hibernate. Часть 2.
 13. Spring Core.
 14. Spring Boot. Spring Security.
