@@ -77,6 +77,25 @@ public class Main {
                         }
                         break;
 
+                    case "/buy":
+                        pattern = Pattern.compile("^\\/buy\\s+(.+)$");
+                        matcher = pattern.matcher(command);
+
+                        if (matcher.matches()) {
+                            parts = matcher.group(1).split("\\s+", 2);
+                            if (parts.length == 2) {
+                                String customerName = parts[0];
+                                String itemName = parts[1];
+                                buyItem(customerName, itemName, sessionFactory);
+                            } else {
+                                System.out.println("Неверный формат команды");
+                            }
+                        } else {
+                            System.out.println("Неверный формат команды");
+                        }
+                        break;
+
+
                     case "/exit":
                         running = false;
                         break;
@@ -86,38 +105,6 @@ public class Main {
             }
             scanner.close();
         }
-    }
-
-    private static void removeItem(String itemName, SessionFactory sessionFactory) {
-
-        Session currentSession = sessionFactory.getCurrentSession();
-
-        currentSession.beginTransaction();
-        Item item = getItemByName(itemName, currentSession);
-        System.out.println(item);
-
-        if (item != null) {
-            currentSession.remove(item);
-        } else {
-            System.out.println("Товар с названием " + itemName + " не найден.");
-
-        }
-        currentSession.getTransaction().commit();
-    }
-
-    private static void removeCustomer(String customerName, SessionFactory sessionFactory) {
-
-        Session currentSession = sessionFactory.getCurrentSession();
-
-        currentSession.beginTransaction();
-        Customer customer = getCustomerByName(customerName, currentSession);
-
-        if (customer != null) {
-            currentSession.remove(customer);
-        } else {
-            System.out.println("Клиент с именем " + customerName + "  не найден.");
-        }
-        currentSession.getTransaction().commit();
     }
 
     public static void showItemsByCustomer(String customerName, SessionFactory sessionFactory) {
@@ -157,6 +144,57 @@ public class Main {
         currentSession.getTransaction().commit();
 
     }
+
+    private static void removeCustomer(String customerName, SessionFactory sessionFactory) {
+
+        Session currentSession = sessionFactory.getCurrentSession();
+
+        currentSession.beginTransaction();
+        Customer customer = getCustomerByName(customerName, currentSession);
+
+        if (customer != null) {
+            currentSession.remove(customer);
+        } else {
+            System.out.println("Клиент с именем " + customerName + "  не найден.");
+        }
+        currentSession.getTransaction().commit();
+    }
+
+    private static void removeItem(String itemName, SessionFactory sessionFactory) {
+
+        Session currentSession = sessionFactory.getCurrentSession();
+
+        currentSession.beginTransaction();
+        Item item = getItemByName(itemName, currentSession);
+
+        if (item != null) {
+            currentSession.remove(item);
+        } else {
+            System.out.println("Товар с названием " + itemName + " не найден.");
+
+        }
+        currentSession.getTransaction().commit();
+    }
+
+    private static void buyItem(String customerName, String itemName, SessionFactory sessionFactory) {
+
+        Session currentSession = sessionFactory.getCurrentSession();
+        currentSession.beginTransaction();
+        Customer customerByName = getCustomerByName(customerName, currentSession);
+        Item itemByName = getItemByName(itemName, currentSession);
+        if (customerByName != null && itemByName != null) {
+            customerByName.getItems().add(itemByName);
+        } else {
+            if (customerByName == null) {
+                System.out.println("Покупатель с именем " + customerName + " не найден.");
+            }
+            if (itemByName == null) {
+                System.out.println("Товар с названием " + itemName + " не найден.");
+            }
+        }
+        currentSession.getTransaction().commit();
+    }
+
 
     private static Item getItemByName(String itemName, Session currentSession) {
 

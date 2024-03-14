@@ -160,3 +160,5 @@ ALTER TABLE orders
 
 [![Presentation 1](img/thumb-1.png)](https://youtu.be/aEoC_QchBME "Presentation 1")
 
+- На коммите(implement /buy имя_покупателя название_товара) в текущей ветке, 
+имплементирован фунционал `/buy имя_покупателя название_товара` 
