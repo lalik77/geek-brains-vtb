@@ -7,33 +7,36 @@
 1 - Создание таблицы items и пополнение
 
 ```sql
-CREATE TABLE items (
-    id int GENERATED ALWAYS AS IDENTITY ,
+CREATE TABLE items
+(
+    id  int GENERATED ALWAYS AS IDENTITY,
     val int
 );
 ```
 
 ```sql
-DO $$
+DO
+$$
     DECLARE
         counter INTEGER := 1;
     BEGIN
-        WHILE counter <= 40 LOOP
+        WHILE counter <= 40
+            LOOP
                 INSERT INTO items (val) VALUES (0);
                 counter := counter + 1;
             END LOOP;
-    END $$;
+    END
+$$;
 ```
 
 2 - В файле `hibernate.cfg.xml`  поставить 8 так как запускать будем 8 потоков.
 
 ![hibernate-cfg-xml.png](img%2Fhibernate-cfg-xml.png)
 
-
 3.1 - Optimistic
 ![optimistic.png](img%2Foptimistic.png)
 
-3.2 - Pessimistic 
+3.2 - Pessimistic
 С pessimistic, что-то не так
 
 ![pessimistic.png](img%2Fpessimistic.png)
@@ -42,3 +45,12 @@ DO $$
 
 В `catch`, блоке добавлю `rollBack()` и проверю заново.
 ![app-pessimistic.png](img%2Fapp-pessimistic.png)
+
+Также
+![pessimistic-2.png](img%2Fpessimistic-2.png)
+
+<span style ="color:green">Проблема решена</span>
+
+![pessimistic-3.png](img%2Fpessimistic-3.png)
+
+![pessimistic-result.png](img%2Fpessimistic-result.png)

@@ -1,4 +1,4 @@
-package main;
+package main.java.lecture12;
 
 import main.java.lecture12.model.Item;
 import main.java.lecture12.utils.HibernateUtil;
@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
 import javax.persistence.LockModeType;
+import javax.persistence.OptimisticLockException;
 import java.util.concurrent.CountDownLatch;
 
 public class AppPessimistic {
@@ -29,7 +30,7 @@ public class AppPessimistic {
 
                 Item item = currentSession
                         .createQuery("FROM Item i WHERE i.id = :id", Item.class)
-                        .setLockMode(LockModeType.PESSIMISTIC_READ)
+                        .setLockMode(LockModeType.PESSIMISTIC_WRITE)
                         .setParameter("id",rowNumber)
                         .getSingleResult();
 
@@ -41,8 +42,10 @@ public class AppPessimistic {
 
                 try{
                     currentSession.getTransaction().commit();
-                }catch (Exception e) {
+                }catch (OptimisticLockException e) {
                     System.err.println("During commit " + e);
+                    currentSession.getTransaction().rollback();
+
                 }
 
                 if (currentSession != null) currentSession.close();
