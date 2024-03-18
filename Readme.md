@@ -26,7 +26,8 @@
 
 [11. Hibernate. Часть 1.](https://github.com/lalik77/geek-brains-vtb/tree/11-lecture)
 
-12. Hibernate. Часть 2.
+[12. Hibernate. Часть 2.](https://github.com/lalik77/geek-brains-vtb/tree/12-lecture)
+
 13. Spring Core.
 14. Spring Boot. Spring Security.
 15. Spring Data.
@@ -34,7 +35,7 @@
 17. Spring Cloud (Netflix).
 18. OAuth-авторизация и jwt.
 19. RabbitMQ.
-20. Doker.
+20. Docker.
 
 
 1 - Лекция 1 - > соответсвует ветке [1-lecture](https://github.com/lalik77/geek-brains-vtb/tree/1-lecture)
