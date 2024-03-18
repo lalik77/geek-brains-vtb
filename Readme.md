@@ -1,40 +1,44 @@
+# 12. Hibernate. Часть 2.
+
+![HW-12.png](img%2FHW-12.png)
+
+Касаемо окружения, смотреть [ветку ](https://github.com/lalik77/geek-brains-vtb/tree/11-lecture)
+
+1 - Создание таблицы items и пополнение
+
+```sql
+CREATE TABLE items (
+    id int GENERATED ALWAYS AS IDENTITY ,
+    val int
+);
+```
+
+```sql
+DO $$
+    DECLARE
+        counter INTEGER := 1;
+    BEGIN
+        WHILE counter <= 40 LOOP
+                INSERT INTO items (val) VALUES (0);
+                counter := counter + 1;
+            END LOOP;
+    END $$;
+```
+
+2 - В файле `hibernate.cfg.xml`  поставить 8 так как запускать будем 8 потоков.
+
+![hibernate-cfg-xml.png](img%2Fhibernate-cfg-xml.png)
 
 
-![Shapka](https://github.com/lalik77/geek-brains-vtb/blob/master/img/shapka.jpg)
+3.1 - Optimistic
+![optimistic.png](img%2Foptimistic.png)
 
-[1. ООП. Базовый уровень.](https://github.com/lalik77/geek-brains-vtb/tree/1-lecture)
+3.2 - Pessimistic 
+С pessimistic, что-то не так
 
-[2. ООП. Продвинутый уровень.](https://github.com/lalik77/geek-brains-vtb/tree/2-lecture)
+![pessimistic.png](img%2Fpessimistic.png)
+Во время выполнения получаю много `Deadlock`
+![dead-lock.png](img%2Fdead-lock.png)
 
-[3. Исключения.](https://github.com/lalik77/geek-brains-vtb/tree/3-lecture)
-
-[4. Обощения, Коллекции.](https://github.com/lalik77/geek-brains-vtb/tree/4-lecture)
-
-[5. Коллекции. Часть 2.](https://github.com/lalik77/geek-brains-vtb/tree/5-lecture)
-
-[6. Многопоточность. Часть 1.](https://github.com/lalik77/geek-brains-vtb/tree/6-lecture)
-
-[7. Многопоточность. Часть 2.](https://github.com/lalik77/geek-brains-vtb/tree/7-lecture)
-
-[8. Stream API.](https://github.com/lalik77/geek-brains-vtb/tree/8-lecture)
-
-[9. Reflection API. JDBC. Основы PostgreSQL.](https://github.com/lalik77/geek-brains-vtb/tree/9-lecture)
-
-[10. Работа с PostgreSQL.](https://github.com/lalik77/geek-brains-vtb/tree/10-lecture)
-
-[10. Работа с PostgreSQL.](https://github.com/lalik77/geek-brains-vtb/tree/10-lecture)
-
-[11. Hibernate. Часть 1.](https://github.com/lalik77/geek-brains-vtb/tree/11-lecture)
-
-12. Hibernate. Часть 2.
-13. Spring Core.
-14. Spring Boot. Spring Security.
-15. Spring Data.
-16. Spring AOP. 
-17. Spring Cloud (Netflix).
-18. OAuth-авторизация и jwt.
-19. RabbitMQ.
-20. Doker.
-
-
-1 - Лекция 1 - > соответсвует ветке [1-lecture](https://github.com/lalik77/geek-brains-vtb/tree/1-lecture)
+В `catch`, блоке добавлю `rollBack()` и проверю заново.
+![app-pessimistic.png](img%2Fapp-pessimistic.png)
