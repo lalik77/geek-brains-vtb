@@ -1,41 +1,116 @@
 
+# 13. Spring Core.
+![HW-13.png](img%2FHW-13.png)
 
-![Shapka](https://github.com/lalik77/geek-brains-vtb/blob/master/img/shapka.jpg)
+Для работы со `Spring Application Context` подключим :
 
-[1. ООП. Базовый уровень.](https://github.com/lalik77/geek-brains-vtb/tree/1-lecture)
+```xml
+ <!-- Spring Core -->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>${spring.version}</version>
+    </dependency>```
+```
 
-[2. ООП. Продвинутый уровень.](https://github.com/lalik77/geek-brains-vtb/tree/2-lecture)
-
-[3. Исключения.](https://github.com/lalik77/geek-brains-vtb/tree/3-lecture)
-
-[4. Обощения, Коллекции.](https://github.com/lalik77/geek-brains-vtb/tree/4-lecture)
-
-[5. Коллекции. Часть 2.](https://github.com/lalik77/geek-brains-vtb/tree/5-lecture)
-
-[6. Многопоточность. Часть 1.](https://github.com/lalik77/geek-brains-vtb/tree/6-lecture)
-
-[7. Многопоточность. Часть 2.](https://github.com/lalik77/geek-brains-vtb/tree/7-lecture)
-
-[8. Stream API.](https://github.com/lalik77/geek-brains-vtb/tree/8-lecture)
-
-[9. Reflection API. JDBC. Основы PostgreSQL.](https://github.com/lalik77/geek-brains-vtb/tree/9-lecture)
-
-[10. Работа с PostgreSQL.](https://github.com/lalik77/geek-brains-vtb/tree/10-lecture)
-
-[10. Работа с PostgreSQL.](https://github.com/lalik77/geek-brains-vtb/tree/10-lecture)
-
-[11. Hibernate. Часть 1.](https://github.com/lalik77/geek-brains-vtb/tree/11-lecture)
-
-[12. Hibernate. Часть 2.](https://github.com/lalik77/geek-brains-vtb/tree/12-lecture)
-
-13. Spring Core.
-14. Spring Boot. Spring Security.
-15. Spring Data.
-16. Spring AOP. 
-17. Spring Cloud (Netflix).
-18. OAuth-авторизация и jwt.
-19. RabbitMQ.
-20. Docker.
+```xml
+ <!-- Spring Beans -->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-beans</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
 
 
-1 - Лекция 1 - > соответсвует ветке [1-lecture](https://github.com/lalik77/geek-brains-vtb/tree/1-lecture)
+```
+
+```xml
+<!-- Spring Core IO -->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-core</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+```
+
+```xml
+<!-- Spring Expression Language (SpEL) -->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-expression</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+
+```
+
+1 - Создаем класс `Product`
+
+2 - Создаем компонент `ProductService`
+ Можно разными способами создавать компоненты в Spring. Я выбрал такой, создаю через класс `AppConfig`,
+на который я повесил аннотацию `@Configuration`
+
+Создаем бин 
+
+```java
+ @Bean
+    public ProductService productService(){
+        ProductService productService = new ProductService();
+        return productService;
+    }
+```
+
+В `Аpp` тестируем
+
+```java
+AnnotationConfigApplicationContext annotationConfigApplicationContext =
+                new AnnotationConfigApplicationContext(AppConfig.class);
+
+        ProductService productService =
+                (ProductService) annotationConfigApplicationContext.getBean("productService");
+
+        productService.printAll();
+        System.out.println(productService.findByTitle("bosh"));
+```
+
+
+3 - Создаем компонент `Cart` 
+
+Создаем бин
+```java
+ @Bean
+    public CartImpl cart(){
+        List<Product> list = new ArrayList<>();
+        return new CartImpl(list);
+    }
+```
+В `Аpp` тестируем
+
+```java
+CartImpl cart = (CartImpl) annotationConfigApplicationContext.getBean("cart");
+cart.add(productService.findByTitle("bosh"));
+cart.add(productService.findByTitle("iphone"));
+
+System.out.println(cart);
+```
+
+
+
+4 - Создаем компонент `OrderService` позволяющий из корзины сформировать заказ
+
+Создаем бин
+```java
+@Bean
+public OrderService orderService(){
+return new OrderService(cart());
+}
+
+```
+
+В `Аpp` тестируем
+
+```java
+ OrderService orderService = (OrderService) annotationConfigApplicationContext.getBean("orderService");
+        orderService.order();
+```
+
+[Методичка](Java-ВТБ-Методичка-13.pdf)
