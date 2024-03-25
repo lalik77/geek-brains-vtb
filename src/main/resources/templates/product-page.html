@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Каталог товаров</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <style>
+        .bottom-left-button {
+            position: sticky;
+            bottom: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container position-relative">
+    <h2>Product Details</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${product.id}">ID Placeholder</td>
+            <td th:text="${product.title}">Title Placeholder</td>
+            <td th:text="${product.price}">Price Placeholder</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="bottom-left-button" >
+        <a th:href="@{'/products'}" class="btn btn-secondary">Назад</a>
+    </div>
+</div>
+
+</body>
+</html>

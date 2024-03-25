@@ -1,42 +1,50 @@
+# 14. Spring Boot. Thymeleaf.Spring Security.
 
+"Имеющий код" - это тот код с `Product` в конце лекции.
+Я буду писать все с самого начала. 
 
-![Shapka](https://github.com/lalik77/geek-brains-vtb/blob/master/img/shapka.jpg)
+![HW-14.png](img/HW-14.png)
 
-[1. ООП. Базовый уровень.](https://github.com/lalik77/geek-brains-vtb/tree/1-lecture)
+1 - Настраиваю проект
+Так, чтобы он был `Spring Boot` проектом и в `pom.xml` добавляю все мне 
+необходимые зависимости
 
-[2. ООП. Продвинутый уровень.](https://github.com/lalik77/geek-brains-vtb/tree/2-lecture)
+2 - Создаю класc `Product` и слои ( контроллер, сервис, репо )
 
-[3. Исключения.](https://github.com/lalik77/geek-brains-vtb/tree/3-lecture)
+3 - В папке `resources` создаю папку `templates`, где будут  `.html` файлы.
 
-[4. Обощения, Коллекции.](https://github.com/lalik77/geek-brains-vtb/tree/4-lecture)
+Приступаю к ДЗ (Обычный вариант - учитываю что добавление товара реализовано)
 
-[5. Коллекции. Часть 2.](https://github.com/lalik77/geek-brains-vtb/tree/5-lecture)
+1 - Добавляю возможность редактировать название и цену товаров
+ В контроллере добавляем два метода 
 
-[6. Многопоточность. Часть 1.](https://github.com/lalik77/geek-brains-vtb/tree/6-lecture)
+![controller-edit.png](img%2Fcontroller-edit.png)
 
-[7. Многопоточность. Часть 2.](https://github.com/lalik77/geek-brains-vtb/tree/7-lecture)
+ В сервисе добавляем еще один метод
 
-[8. Stream API.](https://github.com/lalik77/geek-brains-vtb/tree/8-lecture)
+![service-update.png](img%2Fservice-update.png)
 
-[9. Reflection API. JDBC. Основы PostgreSQL.](https://github.com/lalik77/geek-brains-vtb/tree/9-lecture)
+ В репозитории симулируем работу в БД 
 
-[10. Работа с PostgreSQL.](https://github.com/lalik77/geek-brains-vtb/tree/10-lecture)
+![repo-update.png](img%2Frepo-update.png)
 
-[10. Работа с PostgreSQL.](https://github.com/lalik77/geek-brains-vtb/tree/10-lecture)
+2 - Фильтр
+ 
+ - В  `products.html` добавляю форму над таблицей
+![filtr-products-html.png](img%2Ffiltr-products-html.png)
 
-[11. Hibernate. Часть 1.](https://github.com/lalik77/geek-brains-vtb/tree/11-lecture)
+ - В контроллере меняем метод `showProductsList`
 
-[12. Hibernate. Часть 2.](https://github.com/lalik77/geek-brains-vtb/tree/12-lecture)
+![controller-show-product-list.png](img%2Fcontroller-show-product-list.png)
+ 
+3 - Добавлю удаление
 
-[13. Spring Core.](https://github.com/lalik77/geek-brains-vtb/tree/13-lecture?tab=readme-ov-file)
+ - В  `products.html` добавляю кнопку удаления
 
-14. Spring Boot. Spring Security.
-15. Spring Data.
-16. Spring AOP. 
-17. Spring Cloud (Netflix).
-18. OAuth-авторизация и jwt.
-19. RabbitMQ.
-20. Docker.
+![products-html-delete.png](img%2Fproducts-html-delete.png)
 
+В итоге имеем 
 
-1 - Лекция 1 - > соответсвует ветке [1-lecture](https://github.com/lalik77/geek-brains-vtb/tree/1-lecture)
+[![hw-14](img/thumb.png)](https://youtu.be/v5WRlbyS_3g "hw-14")
+
+[PDF - Методичка 14](Java-ВТБ-Методичка-14.pdf)
