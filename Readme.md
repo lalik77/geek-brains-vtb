@@ -28,7 +28,8 @@
 
 [12. Hibernate. Часть 2.](https://github.com/lalik77/geek-brains-vtb/tree/12-lecture)
 
-13. Spring Core.
+[13. Spring Core.](https://github.com/lalik77/geek-brains-vtb/tree/13-lecture?tab=readme-ov-file)
+
 14. Spring Boot. Spring Security.
 15. Spring Data.
 16. Spring AOP. 
