@@ -30,7 +30,9 @@
 
 [13. Spring Core.](https://github.com/lalik77/geek-brains-vtb/tree/13-lecture?tab=readme-ov-file)
 
-14. Spring Boot. Spring Security.
+[14. Spring Boot. Thymeleaf. Spring Security.](https://github.com/lalik77/geek-brains-vtb/tree/14-lecture)
+
+
 15. Spring Data.
 16. Spring AOP. 
 17. Spring Cloud (Netflix).
