@@ -1,44 +1,60 @@
 
+# 15. Spring Data.
 
-![Shapka](https://github.com/lalik77/geek-brains-vtb/blob/master/img/shapka.jpg)
+![HW-15.png](img/HW-15.png)
 
-[1. ООП. Базовый уровень.](https://github.com/lalik77/geek-brains-vtb/tree/1-lecture)
+Так как неоткуда переносить работу, буду создавать
+с самого начала.
 
-[2. ООП. Продвинутый уровень.](https://github.com/lalik77/geek-brains-vtb/tree/2-lecture)
+1 - Начинаю с `pom.xml`
 
-[3. Исключения.](https://github.com/lalik77/geek-brains-vtb/tree/3-lecture)
+2 - По окружению [см ветку](https://github.com/lalik77/geek-brains-vtb/tree/11-lecture)
 
-[4. Обощения, Коллекции.](https://github.com/lalik77/geek-brains-vtb/tree/4-lecture)
+3 - C запущенным контейнером PostgreSQL, заходим в него чтобы создать новую схему для flyway
 
-[5. Коллекции. Часть 2.](https://github.com/lalik77/geek-brains-vtb/tree/5-lecture)
+![docker-exec-it-psql.png](img%2Fdocker-exec-it-psql.png)
 
-[6. Многопоточность. Часть 1.](https://github.com/lalik77/geek-brains-vtb/tree/6-lecture)
+`The \dn command in psql is used to list all schemas in the current PostgreSQL database.`
 
-[7. Многопоточность. Часть 2.](https://github.com/lalik77/geek-brains-vtb/tree/7-lecture)
+![list-all-schemas-1.png](img%2Flist-all-schemas-1.png)
 
-[8. Stream API.](https://github.com/lalik77/geek-brains-vtb/tree/8-lecture)
+`Ceate new schema`
 
-[9. Reflection API. JDBC. Основы PostgreSQL.](https://github.com/lalik77/geek-brains-vtb/tree/9-lecture)
+![list-all-schemas-2.png](img%2Flist-all-schemas-2.png)
 
-[10. Работа с PostgreSQL.](https://github.com/lalik77/geek-brains-vtb/tree/10-lecture)
+4 - Пишем в application.properties 
+![app-properties.png](img/app-properties.png)
 
-[10. Работа с PostgreSQL.](https://github.com/lalik77/geek-brains-vtb/tree/10-lecture)
+5 - Пишем `sql`
+![script-1.png](img/script-1.png)
 
-[11. Hibernate. Часть 1.](https://github.com/lalik77/geek-brains-vtb/tree/11-lecture)
+```sql
+CREATE TABLE items (
+    id int PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    title varchar(50)
+);
+```
+Запускаем Spring Boot приложение и Flyway создал нам таблицу `items`
 
-[12. Hibernate. Часть 2.](https://github.com/lalik77/geek-brains-vtb/tree/12-lecture)
+![spring-boot-run-flyway.png](img%2Fspring-boot-run-flyway.png)
 
-[13. Spring Core.](https://github.com/lalik77/geek-brains-vtb/tree/13-lecture?tab=readme-ov-file)
+![hw15-schema.png](img/hw15-schema.png)
 
-[14. Spring Boot. Thymeleaf. Spring Security.](https://github.com/lalik77/geek-brains-vtb/tree/14-lecture)
+Если я делаю изменения в файле .sql, то получаю ошибку;  
+
+![script-2.png](img/script-2.png)
+
+![error-flyway-1.png](img/error-flyway-1.png)
+
+Чтобы отключить создание entity (DDL handling) Hibernate(_ом), 
+в `application.properties` добавим 
+
+![app-properties-2.png](img/app-properties-2.png)
+
+6 - Пишем след скрипт для заполнения товарами
+V2__insert.sql
+Дальше напишем слои (Controller, Service и Repo)
 
 
-15. Spring Data.
-16. Spring AOP. 
-17. Spring Cloud (Netflix).
-18. OAuth-авторизация и jwt.
-19. RabbitMQ.
-20. Docker.
 
-
-1 - Лекция 1 - > соответсвует ветке [1-lecture](https://github.com/lalik77/geek-brains-vtb/tree/1-lecture)
+[PDF - Методичка 15](Java-ВТБ-Методичка-15.pdf)
