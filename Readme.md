@@ -3,6 +3,8 @@
 
 ![HW-15.png](img/HW-15.png)
 
+Пункт 1 
+
 Так как неоткуда переносить работу, буду создавать
 с самого начала.
 
@@ -55,6 +57,28 @@ CREATE TABLE items (
 V2__insert.sql
 Дальше напишем слои (Controller, Service и Repo)
 
+Пункт 2
+
+1 - Пишем еще один скрипт для заполнения товарами
+V4__insert.sql
+
+2 - Реализуем пагинацию
+
+ - `Service` слой
+
+![service-layer-pagination.png](img%2Fservice-layer-pagination.png)
+
+ - `Controller` слой
+
+![controller-layer-pagination.png](img%2Fcontroller-layer-pagination.png)
+
+ -  `View`
+
+![view-pagination.png](img%2Fview-pagination.png)
+
+
+
+[![hw-15-2](img/thumb.png)](https://youtu.be/1EZzg6mqwRQ "hw-15-2")
 
 
 [PDF - Методичка 15](Java-ВТБ-Методичка-15.pdf)
