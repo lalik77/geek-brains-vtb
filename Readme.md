@@ -76,9 +76,29 @@ V4__insert.sql
 
 ![view-pagination.png](img%2Fview-pagination.png)
 
-
-
 [![hw-15-2](img/thumb.png)](https://youtu.be/1EZzg6mqwRQ "hw-15-2")
+
+
+Пункт 3
+
+- Создаем класс `ItemSpecs` со статическими методами
+
+![items-specs-class.png](img/items-specs-class.png)
+
+
+- Модифицируем контроллер
+
+![controller-layer-specs.png](img/controller-layer-specs.png)
+
+- Модифицируем репозиторий
+
+![item-repository.png](img/item-repository.png)
+
+- Модифицируем `items.html`
+
+![view-filtr.png](img/view-filtr.png)
+
+[![hw-15-3](img/thumb-1.png)](https://youtu.be/Aot8fgHzIa8 "hw-15-3")
 
 
 [PDF - Методичка 15](Java-ВТБ-Методичка-15.pdf)
