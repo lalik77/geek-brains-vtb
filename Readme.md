@@ -28,12 +28,12 @@
 
 [12. Hibernate. Часть 2.](https://github.com/lalik77/geek-brains-vtb/tree/12-lecture)
 
-[13. Spring Core.](https://github.com/lalik77/geek-brains-vtb/tree/13-lecture?tab=readme-ov-file)
+[13. Spring Core.](https://github.com/lalik77/geek-brains-vtb/tree/13-lecture)
 
 [14. Spring Boot. Thymeleaf. Spring Security.](https://github.com/lalik77/geek-brains-vtb/tree/14-lecture)
 
+[15. Spring Data.](https://github.com/lalik77/geek-brains-vtb/tree/15-lecture)
 
-15. Spring Data.
 16. Spring AOP. 
 17. Spring Cloud (Netflix).
 18. OAuth-авторизация и jwt.
